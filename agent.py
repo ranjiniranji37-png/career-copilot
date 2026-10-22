@@ -3,7 +3,7 @@ import os
 
 import anthropic
 
-from .tools import TOOL_SCHEMAS, ToolBox
+from tools import TOOL_SCHEMAS, ToolBox
 
 DEFAULT_MODEL = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
 MAX_STEPS = 6

@@ -1,0 +1,5 @@
+Junior AI Engineer
+We are looking for a fresher with Python, SQL, REST API and Git experience.
+You will build LLM applications using prompt engineering, RAG and LangChain, deploy with Docker on AWS,
+and write clean code with FastAPI. Knowledge of machine learning, NLP and Pandas is a plus.
+Strong communication and problem solving skills required.

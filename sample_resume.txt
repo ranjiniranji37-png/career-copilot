@@ -1,0 +1,7 @@
+Priya Sharma - Final year B.Tech (Computer Science)
+Skills: Python, SQL, HTML, CSS, JavaScript, Git, GitHub, Pandas, NumPy, Flask, Machine Learning, Data Structures, Algorithms.
+Projects:
+Student Marks Predictor - Built a machine learning model with scikit-learn and Pandas to predict exam scores with 88% accuracy. Deployed a Flask API.
+Portfolio Website - Designed a responsive site using HTML, CSS and JavaScript, hosted on GitHub Pages.
+Internship: Codomax Digital - Completed a 30-day program covering Python, SQL, REST APIs and GenAI basics. Strong problem solving and communication.
+Education: B.Tech CSE, CGPA 8.2.

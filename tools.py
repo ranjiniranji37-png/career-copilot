@@ -2,7 +2,7 @@
 import json
 import re
 
-from .rag import KnowledgeBase
+from rag import KnowledgeBase
 
 SKILL_VOCAB = {
     "python", "java", "javascript", "typescript", "c++", "sql", "html", "css", "react",

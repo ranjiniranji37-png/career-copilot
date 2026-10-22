@@ -1,38 +1,40 @@
-# AI Productivity Toolkit — Prompt Engineering Module
+# 🎯 Career Copilot – GenAI Capstone
 
-A beginner-friendly demo project for experimenting with prompt templates for:
-- summarizing text
-- drafting content
-- classifying feedback
-- generating study/interview practice questions
+AI career assistant: **Mock Interview · Resume Improver (ATS) · Cover Letter · Skill Gap Planner · Career Chat**.
 
-## Important note
-This starter version uses simple Python rules and templates. It does **not** call a real LLM/API yet. To make it a real Generative AI application, connect an LLM provider and store the API key securely (never commit API keys to GitHub).
+| Requirement | Where |
+|---|---|
+| LLM API integration | `agent.py` (Anthropic Messages API) |
+| Prompt engineering | `prompts.py` (role prompts, structured output, few-shot) |
+| RAG | `rag.py` (chunking + TF-IDF + cosine retrieval over resume/JD) |
+| Tools | `tools.py` (`search_documents`, `ats_match_score`, `skill_gap_plan`) |
+| Agent | `agent.py` (reason → tool call → observe loop, max 6 steps) |
+| UI | `app.py` (Streamlit) |
+
+Architecture: see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Run locally
-1. Install Python 3.10 or newer.
-2. Install packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Start the app:
-   ```bash
-   streamlit run app.py
-   ```
+```bash
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env        # add your ANTHROPIC_API_KEY
+streamlit run app.py
+```
+Tick **"Use sample resume + JD"** to try it instantly, or upload your own PDF/TXT.
 
-## Run in Google Colab
-1. Upload `notebooks/Module2_Prompt_Engineering.ipynb` to Google Colab.
-2. Choose **Runtime → Run all**.
-3. The notebook runs with Python's built-in libraries; no API key is required.
+## Deploy (free) – Streamlit Community Cloud
+1. Push this folder to a public GitHub repo.
+2. Go to https://share.streamlit.io → **New app** → select repo, main file `app.py`.
+3. **Advanced settings → Secrets**: `ANTHROPIC_API_KEY = "your_key"`.
+4. Deploy → copy the live URL for submission.
 
-## Project structure
-- `app.py` — Streamlit demo app
-- `notebooks/Module2_Prompt_Engineering.ipynb` — notebook for Colab
-- `toolkit/prompts.py` — prompt templates and helper functions
-- `prompts.json` — editable prompt templates
-- `reports/test_report.md` — basic test checklist/results
-- `linkedin_post.md` — optional LinkedIn post draft
-- `requirements.txt` — app dependencies
+## Docker
+```bash
+docker build -t career-copilot . && docker run -p 8501:8501 -e ANTHROPIC_API_KEY=xxx career-copilot
+```
 
-## GitHub upload
-Extract this ZIP first, then upload the **contents of the extracted folder** to a public GitHub repository. Do not upload only the ZIP if the assignment asks for project files.
+## Demo video checklist
+Mock Interview with sample data → Resume Improver (show the tool-call expander) → Skill Gap Planner.
+
+## Ideas to extend
+Embedding-based RAG (FAISS/Chroma), streaming responses, voice interview, PDF export.
