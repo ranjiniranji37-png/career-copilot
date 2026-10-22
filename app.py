@@ -25,17 +25,17 @@ def read_upload(f) -> str:
 
 def get_key() -> str | None:
     try:
-        if "ANTHROPIC_API_KEY" in st.secrets:
-            return st.secrets["ANTHROPIC_API_KEY"]
+        if "GEMINI_API_KEY" in st.secrets:
+            return st.secrets["GEMINI_API_KEY"]
     except Exception:
         pass
-    return st.session_state.get("key_input") or os.getenv("ANTHROPIC_API_KEY")
+    return st.session_state.get("key_input") or os.getenv("GEMINI_API_KEY")
 
 
 # ---------- Sidebar ----------
 with st.sidebar:
     st.title("🎯 Career Copilot")
-    st.text_input("Anthropic API key", type="password", key="key_input",
+    st.text_input("Gemini API key", type="password", key="key_input",
                   help="Not needed if set in env / Streamlit secrets.")
     mode = st.selectbox("Mode", list(MODES))
     resume_f = st.file_uploader("Resume (PDF/TXT)", type=["pdf", "txt"])

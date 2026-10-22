@@ -1,5 +1,5 @@
 streamlit>=1.38
-anthropic>=0.40
+requests>=2.31
 scikit-learn>=1.4
 pypdf>=4.0
 python-dotenv>=1.0
