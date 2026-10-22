@@ -1,5 +1,6 @@
 """Tool-using agent loop on the Google Gemini API (REST, function calling)."""
 import os
+import time
 
 import requests
 
@@ -31,14 +32,20 @@ def _declarations():
 
 
 def _call(key, model, system, contents):
-    r = requests.post(
-        URL.format(model=model),
-        headers={"x-goog-api-key": key, "Content-Type": "application/json"},
-        json={"system_instruction": {"parts": [{"text": system}]},
-              "contents": contents, "tools": _declarations(),
-              "generationConfig": {"maxOutputTokens": 1500}},
-        timeout=90,
-    )
+    body = {"system_instruction": {"parts": [{"text": system}]},
+            "contents": contents, "tools": _declarations(),
+            "generationConfig": {"maxOutputTokens": 1500}}
+    r = None
+    for attempt in range(5):  # retry on busy / rate-limit errors
+        r = requests.post(
+            URL.format(model=model),
+            headers={"x-goog-api-key": key, "Content-Type": "application/json"},
+            json=body, timeout=90,
+        )
+        if r.status_code in (429, 500, 503) and attempt < 4:
+            time.sleep(3 * (attempt + 1))
+            continue
+        break
     if r.status_code != 200:
         raise RuntimeError(f"Gemini API error {r.status_code}: {r.text[:300]}")
     return r.json()
