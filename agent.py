@@ -5,7 +5,7 @@ import requests
 
 from tools import TOOL_SCHEMAS, ToolBox
 
-DEFAULT_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+DEFAULT_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 MAX_STEPS = 6
 URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
